@@ -1,12 +1,10 @@
 package vgame
 
-import "github.com/kercylan98/vivid/src/vivid"
-
 type Service interface {
-	vivid.Actor
-
 	// Initialize 将在服务启动时调用，用于初始化服务
 	Initialize(application Application) error
+
+	OnReceive(ctx ServiceContext)
 }
 
 type (

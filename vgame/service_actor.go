@@ -14,6 +14,7 @@ func newServiceActor(application *application, service ServiceDefinition) *servi
 type serviceActor struct {
 	application       *application
 	serviceDefinition ServiceDefinition
+	serviceContext    ServiceContext
 	service           Service
 }
 
@@ -26,6 +27,8 @@ func (s *serviceActor) OnReceive(ctx vivid.ActorContext) {
 }
 
 func (s *serviceActor) onLaunch(ctx vivid.ActorContext, m *vivid.OnLaunch) {
+	s.serviceContext = ctx
+
 	name, provider := s.serviceDefinition.Load()
 
 	if err := s.service.Initialize(s.application); err != nil {
