@@ -27,7 +27,7 @@ func (s *serviceActor) OnReceive(ctx vivid.ActorContext) {
 }
 
 func (s *serviceActor) onLaunch(ctx vivid.ActorContext, m *vivid.OnLaunch) {
-	s.serviceContext = ctx
+	s.serviceContext = newServiceContext(ctx, s.application)
 
 	name, provider := s.serviceDefinition.Load()
 
