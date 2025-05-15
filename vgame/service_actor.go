@@ -27,9 +27,8 @@ func (s *serviceActor) OnReceive(ctx vivid.ActorContext) {
 }
 
 func (s *serviceActor) onLaunch(ctx vivid.ActorContext, m *vivid.OnLaunch) {
-	s.serviceContext = newServiceContext(ctx, s.application)
-
 	name, provider := s.serviceDefinition.Load()
+	s.serviceContext = newServiceContext(ctx, s.application, name)
 
 	if err := s.service.Initialize(s.application); err != nil {
 		ctx.Kill(ctx.Ref(), err.Error())
