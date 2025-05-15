@@ -23,7 +23,7 @@ func (s *serviceActor) OnReceive(ctx vivid.ActorContext) {
 	case *vivid.OnLaunch:
 		s.onLaunch(ctx, m)
 	}
-	s.service.OnReceive(ctx)
+	s.service.OnReceive(s.serviceContext)
 }
 
 func (s *serviceActor) onLaunch(ctx vivid.ActorContext, m *vivid.OnLaunch) {
